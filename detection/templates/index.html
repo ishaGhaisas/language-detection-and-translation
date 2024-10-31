@@ -1,9 +1,21 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Language Detection</title>
+</head>
 <body>
+    <h1>Language Detection</h1>
+    <form method="post">
+        {% csrf_token %}
+        <textarea name="text" rows="4" cols="50" placeholder="Enter text here"></textarea>
+        <br>
+        <button type="submit">Detect Language</button>
+    </form>
 
-<h1>Hello World!</h1>
-<p>Welcome to my first Django project!</p>
-
+    {% if prediction %}
+        <p>Detected Language: {{ prediction }}</p>
+    {% endif %}
 </body>
 </html>
