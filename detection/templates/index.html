@@ -1,21 +1,121 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Language Detection</title>
-</head>
-<body>
-    <h1>Language Detection</h1>
-    <form method="post">
-        {% csrf_token %}
-        <textarea name="text" rows="4" cols="50" placeholder="Enter text here"></textarea>
-        <br>
-        <button type="submit">Detect Language</button>
-    </form>
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        margin: 0;
+        padding: 0;
+        background-color: #f9f9f9;
+        color: #333;
+      }
+      
+      header {
+        background-color: #007bff;
+        color: white;
+        text-align: center;
+        padding: 1rem 0;
+      }
+      
+      nav {
+        display: flex;
+        justify-content: center;
+        background-color: #0056b3;
+        padding: 0.5rem 0;
+      }
+      
+      nav a {
+        color: white;
+        text-decoration: none;
+        margin: 0 1rem;
+        font-size: 1.1rem;
+        font-weight: bold;
+        padding: 0.5rem 1rem;
+        border-radius: 4px;
+        transition: background-color 0.3s ease;
+      }
+      
+      nav a:hover {
+        background-color: #007bff;
+      }
+      
+      main {
+        max-width: 600px;
+        margin: 2rem auto;
+        padding: 2rem;
+        background: white;
+        border-radius: 8px;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+      }
+      
+      h1 {
+        margin-bottom: 1rem;
+        color: #007bff;
+      }
+      
+      textarea {
+        width: 100%;
+        padding: 1rem;
+        margin-bottom: 1rem;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+        font-size: 1rem;
+        resize: vertical;
+      }
+      
+      button {
+        padding: 0.75rem 1.5rem;
+        font-size: 1rem;
+        color: white;
+        background-color: #007bff;
+        border: none;
+        border-radius: 4px;
+        cursor: pointer;
+        transition: background-color 0.3s ease;
+      }
+      
+      button:hover {
+        background-color: #0056b3;
+      }
+      
+      p {
+        margin-top: 1.5rem;
+        font-size: 1.1rem;
+        color: #555;
+      }
+      
+      footer {
+        text-align: center;
+        padding: 1rem;
+        margin-top: 2rem;
+        background-color: #f1f1f1;
+        color: #666;
+        font-size: 0.9rem;
+      }
+    </style>
+  </head>
+  <body>
 
-    {% if prediction %}
-        <p>Detected Language: {{ prediction }}</p>
-    {% endif %}
-</body>
+    <nav>
+      <a href="/">Detect</a>
+      <a href="/translate/">Translate</a>
+    </nav>
+
+    <main style="margin-top:150px">
+      <form method="post" style="display: flex; flex-direction: column; align-items: center;">
+        {% csrf_token %}
+        <textarea name="text" rows="4" cols="50" placeholder="Enter text here" style="width: 100%; max-width: 400px; margin: 0 auto 1rem; padding: 1rem; border: 1px solid #ccc; border-radius: 4px; font-size: 1rem; resize: vertical;"></textarea>
+        <button type="submit" style="padding: 0.75rem 1.5rem; font-size: 1rem; color: white; background-color: #007bff; border: none; border-radius: 4px; cursor: pointer; transition: background-color 0.3s ease; text-align: center;">Detect Language</button>
+      </form>
+
+      {% if prediction %}
+        <p style="text-align: center; font-size: 1.2rem; color: #555;">
+          <strong>Detected Language:</strong> {{ prediction }}
+        </p>
+      {% endif %}
+    </main>
+  </body>
 </html>
